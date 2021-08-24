@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scanPeriod="5 seconds">
+
+	<property name = "logdump" value = "./logs" />
+	<timestamp key="UNIQUE_TIMESTAMP" datePattern="yyyyMMddHHmmss" />
+	
+	<appender name = "APPENDER-CONSOLE" class = "ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>&lt;&lt;%-5level&gt;&gt; %d{dd-MMMM-yyyy HH:mm:ss} [%t] %c{0}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name = "proj" level = "debug" additivity = "false" >
+		<appender-ref ref = "APPENDER-CONSOLE" />
+	</logger>
+
+	<root level = "all">
+		<appender-ref ref = "APPENDER-CONSOLE" />
+	</root>
+
+</configuration>
