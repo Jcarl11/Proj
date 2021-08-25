@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class CRUDAbstractOperation<T> {
+public abstract class DMLAbstractClass<T> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CRUDAbstractOperation.class);
+    private static final Logger logger = LoggerFactory.getLogger(DMLAbstractClass.class);
     private Connection connection = null;
     private PreparedStatement prepareStmt = null;
     private static final String oracleConnectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
