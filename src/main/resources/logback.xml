@@ -10,7 +10,7 @@
 		</encoder>
 	</appender>
 	
-	<logger name = "proj" level = "debug" additivity = "false" >
+	<logger name = "proj" level = "debug" additivity = "true" >
 		<appender-ref ref = "APPENDER-CONSOLE" />
 	</logger>
 
