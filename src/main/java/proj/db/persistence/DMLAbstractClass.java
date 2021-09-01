@@ -15,8 +15,8 @@ import proj.db.persistence.datasource.DBSourceFactory;
 public abstract class DMLAbstractClass<T> {
 
   private static final Logger logger = LoggerFactory.getLogger(DMLAbstractClass.class);
-  private Connection connection = null;
-  private PreparedStatement prepareStmt = null;
+  private static Connection connection = null;
+  private static PreparedStatement prepareStmt = null;
 
   protected Connection getConnection()
       throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
@@ -26,7 +26,7 @@ public abstract class DMLAbstractClass<T> {
     return connection;
   }
 
-  protected void prepareStatement(String sql) throws SQLException {
+  protected static void prepareStatement(String sql) throws SQLException {
     if (connection == null) {
       logger.error("No connection initialized! call getConnection() to get connection");
       throw new SQLException("Connection instance is null!");
@@ -34,39 +34,39 @@ public abstract class DMLAbstractClass<T> {
     prepareStmt = connection.prepareStatement(sql);
   }
 
-  protected void setString(int parameter, String value) throws SQLException {
+  protected static void setString(int parameter, String value) throws SQLException {
     prepareStmt.setString(parameter, value);
   }
 
-  protected void setInt(int parameter, int value) throws SQLException {
+  protected static void setInt(int parameter, int value) throws SQLException {
     prepareStmt.setInt(parameter, value);
   }
 
-  protected void setDouble(int parameter, double value) throws SQLException {
+  protected static void setDouble(int parameter, double value) throws SQLException {
     prepareStmt.setDouble(parameter, value);
   }
 
-  protected void setByte(int parameter, byte value) throws SQLException {
+  protected static void setByte(int parameter, byte value) throws SQLException {
     prepareStmt.setByte(parameter, value);
   }
 
-  protected void setBytes(int parameter, byte[] value) throws SQLException {
+  protected static void setBytes(int parameter, byte[] value) throws SQLException {
     prepareStmt.setBytes(parameter, value);
   }
 
-  protected void setDate(int parameter, Date value) throws SQLException {
+  protected static void setDate(int parameter, Date value) throws SQLException {
     prepareStmt.setDate(parameter, value);
   }
 
-  protected int executeUpdate() throws SQLException {
+  protected static int executeUpdate() throws SQLException {
     return prepareStmt.executeUpdate();
   }
 
-  protected ResultSet executeQuery() throws SQLException {
+  protected static ResultSet executeQuery() throws SQLException {
     return prepareStmt.executeQuery();
   }
 
-  protected void closeResources() throws SQLException {
+  protected static void closeResources() throws SQLException {
     logger.debug("Closing resources..");
     if (connection != null || connection.isClosed()) {
       connection.close();
